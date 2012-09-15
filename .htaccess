@@ -1,0 +1,48 @@
+Options All -Indexes
+
+<files .htaccess>
+Order allow,deny
+Deny from all
+</files>
+
+<files wp-config.php>
+Order allow,deny
+Deny from all
+</files>
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteCond %{HTTPS}s ^on(s)|
+RewriteRule ^ http%1://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+
+RewriteRule ^login wordpress/wp-login.php?loginkey=ndg27g&redirect_to=http://%{SERVER_NAME}/wordpress/wp-admin/index.php [L]
+
+RewriteCond %{HTTP_REFERER} !^http://%{SERVER_NAME}/wordpress/wp-admin
+RewriteCond %{HTTP_REFERER} !^http://%{SERVER_NAME}/wordpress/wp-login\.php
+RewriteCond %{HTTP_REFERER} !^http://%{SERVER_NAME}/login
+RewriteCond %{QUERY_STRING} !^loginkey=ndg27g
+RewriteCond %{QUERY_STRING} !^action=logout
+RewriteCond %{REQUEST_METHOD} !POST
+RewriteRule ^wordpress/wp-login\.php http://%{SERVER_NAME}/? [R,L]
+
+RewriteCond %{QUERY_STRING} ^loggedout=true 
+RewriteRule . http://%{SERVER_NAME}/? [L]
+
+</IfModule>
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
