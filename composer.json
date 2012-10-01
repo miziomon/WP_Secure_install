@@ -13,7 +13,7 @@
             "homepage":"http://maurizio.mavida.com",
             "role":"Developer"
         }
-	]		
+	],		
     "require": {
         "php": ">=5.3"
     }
