@@ -1,7 +1,26 @@
 {
     "name": "mavida/wp-secure-install",
     "description": "Lorem ipsum",
+    "version":"0.1",
+    "type":"library",
+    "keywords":["wordpress","secure"],
+    "time":"2012-08-07",
+    "license":"MIT",
+    "authors": [
+        {
+            "name":"Maurizio Pelizzone",
+            "email":"maurizio@mavida.com",
+            "homepage":"http://maurizio.mavida.com",
+            "role":"Developer"
+        }
+	]		
     "require": {
         "php": ">=5.3"
     }
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git://github.com/miziomon/WP_Secure_install.git"
+        }
+    ]	
 }
